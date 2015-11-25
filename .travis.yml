@@ -1,0 +1,8 @@
+sudo: required
+services:
+  - docker
+script:
+  - docker login -e "christian.teijon+gh_ci_rw@rightscale.com" -u rightscalecirw -p "${DOCKERHUB_PASSWORD}"
+  - docker build . -t rightscale/collectd:latest collectd
+  - docker push rightscale/collectd:latest
+  
