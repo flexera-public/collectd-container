@@ -139,7 +139,9 @@ fi
 configure_collectd_plugin write_http \
   "URL \"http://$RLL_IP:88/rll/tss/collectdv5\""
 configure_collectd_plugin load
-configure_collectd_plugin processes
+configure_collectd_plugin processes \
+  'process "rightlink"' \
+  'process "collectd"'
 configure_collectd_plugin users
 
 if collectd -T 2>&1 | grep 'Parse error' >/dev/null 2>&1; then
