@@ -151,4 +151,4 @@ if collectd -T 2>&1 | grep 'Parse error' >/dev/null 2>&1; then
 fi
 
 # run the daemon (in the foreground, since we are ourselves running in a systemd unit)
-collectd -f
+exec collectd -f
