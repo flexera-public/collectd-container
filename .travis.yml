@@ -1,8 +1,11 @@
 sudo: required
 services:
   - docker
+before_install:
+  # Installs selected Docker
+  - sudo apt-get update -qq && sudo apt-get install $DOCKER_APT_PKG=$DOCKER_APT_PKG_VERSION -y && docker -v
 script:
-  - docker login -e "christian.teijon+gh_ci_rw@rightscale.com" -u rightscalecirw -p "${DOCKERHUB_PASSWORD}"
+  - docker login -e "${DOCKERHUB_EMAIL}" -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASSWORD}"
   - docker build -t rightscale/collectd:latest .
   - docker push rightscale/collectd:latest
   
